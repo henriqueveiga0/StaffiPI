@@ -1,26 +1,21 @@
-.login{
+.cadastro{
     display: flex;
     width: 100%;
     min-height: 100vh;
 }
-.login-left{
-    width: 50%;
-}
-.login-left img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.login-right{
+.cadastro-left{
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.login-container{
+.cadastro-right{
+    width: 50%;
+}
+.cadastro-container{
     width: 80%;
 }
-.login-form{
+.cadastro-form{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -40,33 +35,33 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
+    box-sizing: border-box;
 }
-.btn-entrar{
+.btn-cadastrar{
     width: 100%;
     padding: 12px;
     border: none;
     border-radius: 6px;
-    cursor: pointer;
-    background-color: #0086FF;
+    background-color: #0086ff;
     color: white;
     font-size: 16px;
     font-weight: 600;
+    cursor: pointer;
 }
-.login-op{
-    display: flex;
-    justify-content: flex-end;
-}
-.login-op a{
-    color: #0086ff;
-    text-decoration: none;
-    font-size: 14px;
-}
-.cadastro-link{
+.login-link{
     text-align: center;
     margin-top: 20px;
 }
-.cadastro-link a{
-    color: #0086FF;
+.login-link a{
+    color: #0086ff;
     text-decoration: none;
     font-weight: 700;
+}
+.cadastro-right{
+    width: 50%;
+}
+.cadastro-right img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

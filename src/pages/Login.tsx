@@ -1,5 +1,6 @@
 import  "./Login.css"
 import Banner from "../assets/Banner.png"
+import { Link } from "react-router-dom"
 
 function Login() {
     return (
@@ -24,9 +25,18 @@ function Login() {
                     <label htmlFor="senha">Senha</label>
                     <input type="password" name="senha" id="senha" placeholder="Digite sua senha" />
                 </div>
+                 <div className="login-op">
+                    <a href="#">Esqueci minha senha</a>
+                </div>
                 <button type="submit" className="btn-entrar">Entrar</button>
+               
 
             </form>
+
+            <p className="cadastro-link">
+                Não possuí uma conta? {" "}
+                <Link to="/cadastro">Cadastre-se</Link>
+            </p>
 
             </div>
 
