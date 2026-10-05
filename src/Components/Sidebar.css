@@ -1,0 +1,27 @@
+.sidebar{
+    width: 250px;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #292E33;
+    color: #ffffff;
+}
+.sidebar-nav{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.sidebar-nav a{
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    padding: 12px 16px;
+    border: 6px;
+}
+.sidebar-nav a i{
+    font-size: 18px;
+}
+.sidebar-nav a.ativo{
+    background-color: #0086FF;
+}
