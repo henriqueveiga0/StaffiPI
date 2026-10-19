@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
 import "./Funcionarios.css";
+import { Link } from "react-router-dom";
 
 const funcionarios = [
     { id: 1, nome: "João Silva", email: "joao@staffi.com", cargo: "Operador", setor: "Produção", status: "Ativo" },
@@ -33,10 +34,10 @@ function Funcionarios() {
                     <p>Gerencie os funcionários cadastrados na empresa</p>
                 </div>
 
-                <button className="btn-novo-funcionario">
+                <Link to="/funcionario/cadastrar" className="btn-novo-funcionario">
                     <i className="bi bi-plus-lg"></i>
                     Novo funcionário
-                </button>
+                </Link>
             </div>
 
             <div className="funcionarios-filtros">
