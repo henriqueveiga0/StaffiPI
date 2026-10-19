@@ -1,75 +1,53 @@
-# React + TypeScript + Vite
+# Staffi 
+> A segurança no trabalho é responsabilidade coletiva 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Staffi — documentação do projeto.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Sobre o projeto
 
-## React Compiler
+O **Staffi** Nasceu com o objetivo de fascilitar o trabalho do dia a dia do segurança do trabalho, diminuir burocracia de processos utilizando tecnologia, e permitir que o técnico em segurança do trabalho esteja nas situações onde ele é essencial, como supervisão de uso de equipamentos de proteção individual, e manutenção e prevenção de riscos ocupacionais e de trabalho.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> **Nota:** Este README reúne a apresentação principal do Software
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tecnologias
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Tecnologias utilizadas no projeto: 
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- HTML, CSS e JavaScript
+- React
+- Node.js / NestJS
+- Banco de dados
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
 
-```
+## Onde encontrar ? 
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+> Link da aplicação Web : [text](https://staffi-pi-v53s.vercel.app/home)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
 
-```
+## Funcionalidades
+
+Descreva aqui as funcionalidades implementadas no Staffi. Exemplo:
+
+- [ ] Página de visualização geral
+- [ ] Página de cadastro e registro de riscos
+- [ ] Página de gerenciamento de EPI
+- [ ] 
+
+---
+
+## Autor
+
+Equipe Staffi.
+
+---
+
+## Licença
+
+Todos os direitos reservados @2026 
