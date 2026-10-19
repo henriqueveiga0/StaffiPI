@@ -1,0 +1,116 @@
+.modal-fundo{
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: rgba(17, 24, 39, 0.55);
+    animation: aparecer 0.2s ease;
+}
+.modal{
+    width: 100%;
+    max-width: 440px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 26px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    animation: subir 0.3s ease;
+}
+.modal-topo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.modal-topo h2{
+    margin: 0;
+    color: #292E33;
+    font-size: 22px;
+}
+.modal-fechar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #3d5366;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.modal-fechar:hover{
+    background-color: #f1f1f1;
+}
+
+/* Formulário dentro do modal */
+.modal-form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.modal-campo{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.modal-campo label{
+    font-size: 14px;
+    font-weight: 500;
+}
+.modal-campo input,
+.modal-campo select{
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.modal-campo input:focus,
+.modal-campo select:focus{
+    outline: none;
+    border-color: #0086FF;
+    box-shadow: 0 0 0 4px rgba(0, 134, 255, 0.15);
+}
+.modal-botoes{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 8px;
+}
+.modal-cancelar,
+.modal-salvar{
+    padding: 11px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.modal-cancelar{
+    background-color: #f1f1f1;
+    color: #3d5366;
+}
+.modal-cancelar:hover{
+    background-color: #e5e7eb;
+}
+.modal-salvar{
+    background-color: #0086FF;
+    color: #fff;
+}
+.modal-salvar:hover{
+    background-color: #0074dd;
+}
+.modal-salvar:active,
+.modal-cancelar:active{
+    transform: scale(0.97);
+}

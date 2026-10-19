@@ -1,0 +1,185 @@
+.funcionarios-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+.funcionarios-header h1{
+    margin: 0;
+    color: #292e33;
+    font-size: 28px;
+}
+.funcionarios-header p{
+    margin: 6px 0 0;
+    color: #777;
+}
+.btn-novo-funcionario{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: #0086FF;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-novo-funcionario:hover{
+    background-color: #0074dd;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0, 134, 255, 0.28);
+}
+.btn-novo-funcionario:active{
+    transform: scale(0.98);
+}
+
+/* PESQUISA */
+.funcionarios-filtros{
+    margin-bottom: 20px;
+}
+.funcionarios-pesquisa{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 350px;
+    padding: 0 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.funcionarios-pesquisa:focus-within{
+    border-color: #0086FF;
+    box-shadow: 0 0 0 4px rgba(0, 134, 255, 0.15);
+}
+.funcionarios-pesquisa i{
+    color: #777;
+}
+.funcionarios-pesquisa input{
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+}
+
+/* TABELA */
+.funcionarios-tabela{
+    width: 100%;
+    overflow-x: auto;
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+.funcionarios-tabela table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.funcionarios-tabela th{
+    padding: 14px 16px;
+    text-align: left;
+    background-color: #f8f9fa;
+    color: #3d5366;
+    font-size: 13px;
+    font-weight: 600;
+}
+.funcionarios-tabela td{
+    padding: 14px 16px;
+    border-top: 1px solid #eef0f2;
+    color: #292e33;
+    font-size: 14px;
+}
+.funcionarios-tabela tbody tr{
+    transition: background-color 0.15s ease;
+    animation: subir 0.4s ease backwards;
+}
+.funcionarios-tabela tbody tr:hover{
+    background-color: #f7fbff;
+}
+.funcionarios-tabela tbody tr:nth-child(1){ animation-delay: 0.1s; }
+.funcionarios-tabela tbody tr:nth-child(2){ animation-delay: 0.18s; }
+.funcionarios-tabela tbody tr:nth-child(3){ animation-delay: 0.26s; }
+.funcionarios-tabela tbody tr:nth-child(4){ animation-delay: 0.34s; }
+.funcionarios-tabela tbody tr:nth-child(n + 5){ animation-delay: 0.4s; }
+.funcionarios-vazio{
+    padding: 40px 16px !important;
+    text-align: center;
+    color: #777 !important;
+}
+
+/* ETIQUETAS */
+.badge{
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.badge-ativo{
+    background-color: #d1fae5;
+    color: #047857;
+}
+.badge-inativo{
+    background-color: #f1f1f1;
+    color: #666666;
+}
+
+/* BOTÃO DE EXCLUIR */
+.funcionarios-btn-excluir{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #3d5366;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.funcionarios-btn-excluir:hover{
+    background-color: #fde2e2;
+    color: #b91c1c;
+}
+
+/* FUNCIONÁRIO (nome + e-mail + avatar com iniciais) */
+.funcionario-nome{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.funcionario-nome > div:last-child{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.funcionario-nome span{
+    color: #777;
+    font-size: 12px;
+}
+.funcionario-avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eaf5ff;
+    color: #0086FF;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.funcionarios-tabela tbody tr:hover .funcionario-avatar{
+    background-color: #0086FF;
+    color: #fff;
+}

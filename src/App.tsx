@@ -6,6 +6,9 @@ import Epis from './pages/Epis'
 import Relatorio from './pages/Relatorio'
 import Funcionario from './pages/Funcionario'
 import Riscos from './pages/Riscos'
+import NaoEncontrada from './pages/NaoEncontrada'
+import CadastroRisco from './pages/CadastroRisco'
+import CadastroEpi from './pages/CadastroEpi'
 
 function App() {
 
@@ -22,6 +25,10 @@ function App() {
           <Route path='/riscos' element={<Riscos/>}/>
           <Route path='/relatorio' element={<Relatorio/>}/>
           <Route path='/funcionario' element={<Funcionario/>}/>
+          <Route path="/riscos/cadastrar" element={<CadastroRisco />} />
+          <Route path="/epis/cadastrar" element={<CadastroEpi/>} />
+          {/*path='*' pega qualquer endereço que não existe*/}
+          <Route path='*' element={<NaoEncontrada/>}/>
         
 
         </Routes>

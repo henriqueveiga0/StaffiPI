@@ -1,4 +1,4 @@
-import Sidebar from "./Sidebar";
+import Sidebar from "../components/Sidebar";
 import "./Layout.css"
 import type { ReactNode } from "react";
 

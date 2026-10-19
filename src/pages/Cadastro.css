@@ -2,23 +2,36 @@
     display: flex;
     width: 100%;
     min-height: 100vh;
+    background-color: #fff;
 }
 .cadastro-left{
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 24px;
 }
 .cadastro-right{
     width: 50%;
+    overflow: hidden;
 }
 .cadastro-container{
-    width: 80%;
+    width: 100%;
+    max-width: 420px;
+    animation: subir 0.6s ease 0.1s backwards;
+}
+.cadastro-container h1{
+    margin: 0 0 8px;
+    font-size: 30px;
+}
+.cadastro-container > p{
+    margin: 0;
+    color: #6b7680;
 }
 .cadastro-form{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
     margin-top: 30px;
 }
 .campo{
@@ -27,41 +40,132 @@
     gap: 8px;
 }
 .campo label{
+    font-size: 14px;
     font-weight: 500;
 }
 .campo input{
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.btn-cadastrar{
-    width: 100%;
-    padding: 12px;
+.campo input:focus{
+    outline: none;
+    border-color: #0086FF;
+    box-shadow: 0 0 0 4px rgba(0, 134, 255, 0.15);
+}
+
+/* Senha com botão de olho */
+.campo-senha{
+    position: relative;
+}
+.campo-senha input{
+    padding-right: 46px;
+}
+.btn-olho{
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
+    background: transparent;
+    color: #6b7680;
+    font-size: 17px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.btn-olho:hover{
+    color: #0086FF;
+}
+
+.mensagem-erro{
+    margin: 0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background-color: #fde2e2;
+    color: #b91c1c;
+    font-size: 14px;
+    animation: subir 0.3s ease;
+}
+
+.btn-cadastrar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
     background-color: #0086ff;
     color: white;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
+.btn-cadastrar:hover{
+    background-color: #0074dd;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0, 134, 255, 0.28);
+}
+.btn-cadastrar:active{
+    transform: scale(0.98);
+}
+.btn-cadastrar:disabled{
+    opacity: 0.75;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+/* bolinha girando */
+.spinner{
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: girar 0.7s linear infinite;
+}
+
 .login-link{
     text-align: center;
-    margin-top: 20px;
+    margin-top: 24px !important;
 }
 .login-link a{
     color: #0086ff;
     text-decoration: none;
     font-weight: 700;
 }
-.cadastro-right{
-    width: 50%;
+.login-link a:hover{
+    text-decoration: underline;
 }
 .cadastro-right img{
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    animation: aparecer 0.8s ease;
+}
+
+/* Celular/tablet: esconde a imagem e deixa só o formulário */
+@media (max-width: 800px){
+    .cadastro-right{
+        display: none;
+    }
+    .cadastro-left{
+        width: 100%;
+    }
+}
+
+/* Link visual usado enquanto o cadastro ainda não está ligado ao back-end */
+a.btn-cadastrar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }

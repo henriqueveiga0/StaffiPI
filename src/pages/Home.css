@@ -1,41 +1,161 @@
-.home{
-    display: flex;
-    min-height: 100vh;
+/* Banner */
+.dashboard-banner{
+    width: 100%;
+    overflow: hidden;
+    border-radius: 16px;
 }
-.home-conteudo{
-    flex: 1;
-    padding: 30px;
+.dashboard-banner img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.dashboard-titulo{
+    margin: 28px 0 16px;
+    font-size: 22px;
+    color: #292E33;
+}
+
+/* Cards de resumo */
+.dashboard-cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 .dashboard-card{
-    width: 220px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #fff;
+    flex: 1;
+    min-width: 200px;
+    padding: 22px;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
 }
 .dashboard-card p{
-    margin: 0;
+    margin: 14px 0 4px;
+    color: #666;
     font-size: 14px;
 }
 .dashboard-card h2{
-    margin: 10px 0 0;
-    font-size: 28px;
+    margin: 0;
+    font-size: 32px;
+    color: #292E33;
 }
-.dashboard-cards{
+.card-icone{
     display: flex;
-    gap: 20px;
-    margin: 30px;
-}
-.dashboard-estoque{
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background-color: #eaf5ff;
+    color: #0086FF;
     border-radius: 10px;
+    font-size: 20px;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
-.epi-item{
+.dashboard-card:hover .card-icone{
+    background-color: #0086FF;
+    color: #fff;
+}
+
+/* Estoque + riscos lado a lado */
+.dashboard-inferior{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+.dashboard-estoque,
+.dashboard-riscos{
+    flex: 1;
+    min-width: 280px;
+    padding: 22px;
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+.dashboard-estoque h2,
+.dashboard-riscos h2{
+    margin: 0 0 8px;
+    color: #292E33;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+/* Efeito ao passar o mouse (sobe um pouquinho) */
+.dashboard-card,
+.dashboard-estoque,
+.dashboard-riscos{
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.dashboard-card:hover,
+.dashboard-estoque:hover,
+.dashboard-riscos:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(16, 24, 40, 0.1);
+}
+
+/* Entrada em sequência */
+.dashboard-cards > *,
+.dashboard-inferior > *{
+    animation: subir 0.5s ease backwards;
+}
+.dashboard-cards > :nth-child(1){ animation-delay: 0.1s; }
+.dashboard-cards > :nth-child(2){ animation-delay: 0.18s; }
+.dashboard-cards > :nth-child(3){ animation-delay: 0.26s; }
+.dashboard-inferior > :nth-child(1){ animation-delay: 0.3s; }
+.dashboard-inferior > :nth-child(2){ animation-delay: 0.38s; }
+
+/* Linhas das listas */
+.epi-item,
+.risco-item{
+    padding: 14px 0;
+    border-bottom: 1px solid #eef0f2;
+}
+.epi-item:last-child,
+.risco-item:last-child{
+    border-bottom: none;
+}
+.risco-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.epi-linha{
     display: flex;
     justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 8px;
+}
+
+/* Barra de quantidade (cresce da esquerda para a direita) */
+.barra{
+    height: 6px;
+    overflow: hidden;
+    border-radius: 999px;
+    background-color: #eef0f2;
+}
+.barra-preenchida{
+    height: 100%;
+    border-radius: 999px;
+    background-color: #0086FF;
+    transform-origin: left;
+    animation: crescer 0.9s ease 0.4s backwards;
+}
+
+/* Etiquetas de risco */
+.risco-etiqueta{
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.medio{
+    background-color: #fff3cd;
+    color: #856404;
+}
+.alto{
+    background-color: #ffe8cc;
+    color: #b45309;
+}
+.critico{
+    background-color: #fde2e2;
+    color: #b91c1c;
 }
