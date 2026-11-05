@@ -29,9 +29,9 @@ function App() {
           <Route path='/funcionario' element={<Funcionario/>}/>
           <Route path="/riscos/cadastrar" element={<CadastroRisco />} />
           <Route path="/epis/cadastrar" element={<CadastroEpi/>} />
+          <Route path='/funcionario/cadastrar' element={<CadastrarFuncionario/>}/>
           {/*path='*' pega qualquer endereço que não existe*/}
           <Route path='*' element={<NaoEncontrada/>}/>
-          <Route path='/funcionario/cadastrar' element={<CadastrarFuncionario/>}/>
         
 
         </Routes>

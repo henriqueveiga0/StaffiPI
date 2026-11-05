@@ -122,6 +122,7 @@
     border-radius: 999px;
     font-size: 12px;
     font-weight: 600;
+    text-transform: capitalize;
 }
 .badge-ativo{
     background-color: #d1fae5;

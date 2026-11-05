@@ -1,22 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import "./Riscos.css";
 import { Link } from "react-router-dom";
 
-const riscos = [
-    { id: 1, nome: "Ruído excessivo", local: "Produção", criticidade: "Médio" },
-    { id: 2, nome: "Queda de altura", local: "Produção", criticidade: "Alto" },
-    { id: 3, nome: "Risco elétrico", local: "Manutenção", criticidade: "Crítico" },
-];
+const API_URL = "http://localhost:3000/riscos";
 
-function classeDaCriticidade(criticidade: string) {
-    if (criticidade === "Crítico") return "badge-critico";
-    if (criticidade === "Alto") return "badge-alto";
-    return "badge-medio";
+interface Risco {
+    id: number;
+    nome: string;
+    local: string;
+    criticidade: string;
+    descricao: string | null;
 }
+
+// O back-end guarda "medio", "critico"... e na tela mostramos com acento
+const rotulos: Record<string, string> = {
+    baixo: "Baixo",
+    medio: "Médio",
+    alto: "Alto",
+    critico: "Crítico",
+};
+
 
 function Riscos() {
     const [busca, setBusca] = useState("");
+    const [riscos, setRiscos] = useState<Risco[]>([]);
+
+    useEffect(() => {
+        async function carregarRiscos() {
+            try {
+                const resposta = await fetch(API_URL);
+                const dados = await resposta.json();
+                setRiscos(dados);
+            } catch (erro) {
+                console.error("Erro ao buscar riscos:", erro);
+            }
+        }
+        carregarRiscos();
+    }, []);
 
     const riscosFiltrados = riscos.filter((risco) =>
         `${risco.nome} ${risco.local}`.toLowerCase().includes(busca.toLowerCase())
@@ -63,8 +84,8 @@ function Riscos() {
                                 <td>{risco.nome}</td>
                                 <td>{risco.local}</td>
                                 <td>
-                                    <span className={`badge ${classeDaCriticidade(risco.criticidade)}`}>
-                                        {risco.criticidade}
+                                    <span className={`badge badge-${risco.criticidade}`}>
+                                        {rotulos[risco.criticidade] ?? risco.criticidade}
                                     </span>
                                 </td>
                                 <td>

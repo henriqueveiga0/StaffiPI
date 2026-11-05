@@ -1,16 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import "./Epis.css";
 import { Link } from "react-router-dom";
 
-const epis = [
-    { id: 1, nome: "Protetor auricular", quantidade: 67, status: "Ativo" },
-    { id: 2, nome: "Capacete", quantidade: 15, status: "Devolvido" },
-    { id: 3, nome: "Luvas", quantidade: 8, status: "Danificado" },
-];
+const API_URL = "http://localhost:3000/epis";
+
+interface Epi {
+    id: number;
+    nome: string;
+    categoria: string;
+    quantidade: number;
+    ca: string;
+    validade: string;
+    descricao: string | null;
+    status: string;
+}
 
 function Epis() {
     const [busca, setBusca] = useState("");
+    const [epis, setEpis] = useState<Epi[]>([]);
+
+useEffect(() => {
+    async function carregarEpis() {
+        try {
+            const resposta = await fetch(API_URL);
+            const dados = await resposta.json();
+            setEpis(dados);
+        } catch (erro) {
+            console.error("Erro ao buscar EPIs:", erro);
+        }
+    }
+    carregarEpis();
+}, []);
+    
 
     const episFiltrados = epis.filter((epi) =>
         epi.nome.toLowerCase().includes(busca.toLowerCase())

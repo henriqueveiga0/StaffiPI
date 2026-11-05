@@ -135,6 +135,10 @@
     background-color: #fde2e2;
     color: #b91c1c;
 }
+.badge-baixo{
+    background-color: #dcfce7;
+    color: #166534;
+}
 
 /* BOTÃO DE EXCLUIR */
 .riscos-btn-excluir{

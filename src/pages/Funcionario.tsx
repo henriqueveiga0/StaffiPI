@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import "./Funcionarios.css";
 import { Link } from "react-router-dom";
 
-const funcionarios = [
-    { id: 1, nome: "João Silva", email: "joao@staffi.com", cargo: "Operador", setor: "Produção", status: "Ativo" },
-    { id: 2, nome: "Maria Oliveira", email: "maria@staffi.com", cargo: "Técnica de Segurança", setor: "Segurança do Trabalho", status: "Ativo" },
-    { id: 3, nome: "Carlos Santos", email: "carlos@staffi.com", cargo: "Eletricista", setor: "Manutenção", status: "Inativo" },
-];
+const API_URL = "http://localhost:3000/funcionarios";
+
+interface FuncionarioDados {
+    id: number;
+    nome: string;
+    cargo: string;
+    setor: string;
+    email: string;
+    telefone: string | null;
+    status: string;
+}
 
 function pegarIniciais(nome: string) {
     return nome
@@ -21,6 +27,20 @@ function pegarIniciais(nome: string) {
 
 function Funcionarios() {
     const [busca, setBusca] = useState("");
+    const [funcionarios, setFuncionarios] = useState<FuncionarioDados[]>([]);
+
+useEffect(() => {
+    async function carregarFuncionarios() {
+        try {
+            const resposta = await fetch(API_URL);
+            const dados = await resposta.json();
+            setFuncionarios(dados);
+        } catch (erro) {
+            console.error("Erro ao buscar funcionários:", erro);
+        }
+    }
+    carregarFuncionarios();
+}, []);
 
     const funcionariosFiltrados = funcionarios.filter((f) =>
         `${f.nome} ${f.email} ${f.cargo} ${f.setor}`.toLowerCase().includes(busca.toLowerCase())
