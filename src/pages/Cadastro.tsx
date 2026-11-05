@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Cadastro.css";
-import Banner from "../assets/Banner.png";
+import Banner from "../assets/staffi-cadastro.png";
 
 function Cadastro() {
     const [mostrarSenha, setMostrarSenha] = useState(false);

@@ -1,5 +1,5 @@
 import "./Login.css";
-import Banner from "../assets/Banner.png";
+import Banner from "../assets/staffi-login.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 

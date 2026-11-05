@@ -101,7 +101,7 @@
     padding: 13px;
     border: none;
     border-radius: 8px;
-    background-color: #0086ff;
+    background-color: #15803D;
     color: white;
     font-size: 16px;
     font-weight: 600;
@@ -109,7 +109,7 @@
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 .btn-cadastrar:hover{
-    background-color: #0074dd;
+    background-color: #166534;
     transform: translateY(-1px);
     box-shadow: 0 6px 14px rgba(0, 134, 255, 0.28);
 }
