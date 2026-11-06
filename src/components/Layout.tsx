@@ -1,5 +1,4 @@
 import Sidebar from "./Sidebar";
-import "./Layout.css"
 import type { ReactNode } from "react";
 
 {/* Componente Layout recebe uma propriedade chamada children, que pode ser conteudo react

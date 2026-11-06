@@ -1,10 +1,11 @@
 import "./Sidebar.css"
 import { Link, NavLink } from "react-router-dom"
+import Logo from "../assets/Logo.png"
 function Sidebar(){
     return(
         <aside className="sidebar">
             <div className="sidebar-logo">
-                <i className="bi bi-shield-check"></i>
+                <img src={Logo} alt="logo" className="logo" />
                 <h2>Staffi</h2>
             </div>
             <nav className="sidebar-nav">
@@ -35,12 +36,12 @@ function Sidebar(){
                     <i className="bi bi-people"></i>
                     <span>Funcionário</span>
                 </NavLink>
-            </nav>
 
-            {/* TODO (back-end): ao sair, apagar o token de login antes de navegar */}
-            <Link to="/" className="sidebar-sair">
-                <i className="bi bi-box-arrow-left"></i>
-                <span>Sair</span>
+            </nav>
+            <Link to="/" className="sidebar-sair" onClick={() => localStorage.removeItem("usuario")}
+            >
+            <i className="bi bi box-arrow-left"></i>
+            <span>Sair</span>
             </Link>
         </aside>
     )

@@ -2,27 +2,69 @@ import Layout from "../components/Layout";
 import DashboardCard from "../components/DashboardCard";
 import "./Home.css"
 import Banner_dash from "../assets/Banner_dash.png";
+import { useState, useEffect } from "react";
+
+const usuario = JSON.parse(localStorage.getItem("usuario") ?? "{}")
+const primeiroNome = usuario.nome?.split(" ")[0]
+
+const API = "http://localhost:3000";
+
+interface Epi {
+    id: number;
+    nome: string;
+    quantidade: number;
+}
+
+interface Risco {
+    id: number;
+    nome: string;
+    criticidade: string;
+}
+
+// O back-end guarda "medio", "critico"... e na tela mostramos com acento
+const rotulos: Record<string, string> = {
+    baixo: "Baixo",
+    medio: "Médio",
+    alto: "Alto",
+    critico: "Crítico",
+};
 
 function Home(){
-    // TODO (back-end): trocar estes dados de exemplo por chamadas à API (useEffect + fetch)
-    const totalFuncionarios = 24;
-    const totalEpis = 67;
-    const totalRiscos = 3;
+    
+const [funcionarios, setFuncionarios] = useState<{ id: number }[]>([]);
+const [epis, setEpis] = useState<Epi[]>([]);
+const [riscos, setRiscos] = useState<Risco[]>([]);
 
-    const epis = [
-        {id:1, nome: "Capacete", qtd: 15},
-        {id:2, nome: "Luvas", qtd: 32},
-        {id:3, nome: "Óculos", qtd: 20}
-    ];
+useEffect(() => {
+    async function carregarDados() {
+        try {
+            // Promise.all dispara as 3 buscas ao mesmo tempo e espera todas terminarem
+            const [f, e, r] = await Promise.all([
+                fetch(`${API}/funcionarios`).then((res) => res.json()),
+                fetch(`${API}/epis`).then((res) => res.json()),
+                fetch(`${API}/riscos`).then((res) => res.json()),
+            ]);
+            setFuncionarios(f);
+            setEpis(e);
+            setRiscos(r);
+        } catch (erro) {
+            console.error("Erro ao carregar o dashboard:", erro);
+        }
+    }
+    carregarDados();
+}, []);
 
-    const riscos = [
-        {id:1, nome: "Ruído excessivo", nivel: "Médio", classe: "medio"},
-        {id:2, nome: "Queda de altura", nivel: "Alto", classe: "alto"},
-        {id:3, nome: "Risco elétrico", nivel: "Crítico", classe: "critico"}
-    ];
+// Totais dos cards
+const totalFuncionarios = funcionarios.length;
+const totalEpis = epis.reduce((soma, epi) => soma + epi.quantidade, 0); // soma das unidades
+const totalRiscos = riscos.length;
 
-    // maior quantidade em estoque: serve de referência para o tamanho das barras
-    const maiorQtd = Math.max(...epis.map((epi) => epi.qtd), 1);
+// Estoque: os 5 EPIs com mais unidades
+const episEstoque = [...epis].sort((a, b) => b.quantidade - a.quantidade).slice(0, 5);
+const maiorQtd = Math.max(...episEstoque.map((epi) => epi.quantidade), 1);
+
+// Riscos recentes: os 5 últimos cadastrados (maior id)
+const riscosRecentes = [...riscos].sort((a, b) => b.id - a.id).slice(0, 5);
 
     return(
         <Layout>
@@ -30,7 +72,7 @@ function Home(){
                 <img src={Banner_dash} alt="Bem-vindo ao Staffi" />
             </div>
 
-            <h2 className="dashboard-titulo">Visão Geral</h2>
+            <h2 className="dashboard-titulo">Olá, {primeiroNome}! Visão Geral</h2>
             <div className="dashboard-cards">
                 <DashboardCard titulo="Funcionários" valor={totalFuncionarios} icone="bi-people"/>
 
@@ -43,16 +85,17 @@ function Home(){
 
                 <div className="dashboard-estoque">
                     <h2>Estoque de EPIs</h2>
-                    {epis.map((epi) => (
+                    {episEstoque.length == 0 && <p>Nenhum Epi cadastrado</p>}
+                    {episEstoque.map((epi) => (
                         <div className="epi-item" key={epi.id}>
                             <div className="epi-linha">
                                 <span>{epi.nome}</span>
-                                <strong>{epi.qtd}</strong>
+                                <strong>{epi.quantidade}</strong>
                             </div>
                             <div className="barra">
                                 <div
                                     className="barra-preenchida"
-                                    style={{ width: `${(epi.qtd / maiorQtd) * 100}%` }}
+                                    style={{ width: `${(epi.quantidade / maiorQtd) * 100}%` }}
                                 ></div>
                             </div>
                         </div>
@@ -61,10 +104,12 @@ function Home(){
 
                 <div className="dashboard-riscos">
                     <h2>Riscos recentes</h2>
-                    {riscos.map((risco) => (
+                    {riscosRecentes.length == 0 && <p>Nenhum risco cadastrado</p>}
+                    {riscosRecentes.map((risco) => (
                         <div className="risco-item" key={risco.id}>
                             <span>{risco.nome}</span>
-                            <span className={`risco-etiqueta ${risco.classe}`}>{risco.nivel}</span>
+                            <span className={`risco-etiqueta ${risco.criticidade}`}>
+                                {rotulos[risco.criticidade] ?? risco.criticidade}</span>
                         </div>
                     ))}
                 </div>
