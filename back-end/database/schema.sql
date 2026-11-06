@@ -1,0 +1,38 @@
+CREATE DATABASE staffi;
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE riscos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    local VARCHAR(100) NOT NULL,
+    criticidade VARCHAR(20) NOT NULL,
+    descricao TEXT NULL
+);
+
+CREATE TABLE funcionarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    cargo VARCHAR(100) NOT NULL,
+    setor VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    telefone VARCHAR(20) NULL,
+    status_func VARCHAR(255) NOT NULL DEFAULT 'ATIVO'
+);
+
+
+CREATE TABLE epis (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    categoria VARCHAR(100) NOT NULL,
+    quantidade INT NOT NULL DEFAULT 0,
+    ca VARCHAR(50) NOT NULL,
+    validade VARCHAR(20) NOT NULL,
+    descricao TEXT NULL,
+    status_epi VARCHAR(255) NOT NULL DEFAULT 'ATIVO'
+);
