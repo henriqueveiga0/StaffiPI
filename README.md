@@ -22,8 +22,6 @@
 
 O **Staffi** nasceu com o objetivo de facilitar o trabalho do dia a dia do técnico em segurança do trabalho, diminuindo a burocracia dos processos com o uso de tecnologia. Assim, o profissional pode estar presente nas situações em que ele é essencial, como a supervisão do uso de Equipamentos de Proteção Individual (EPIs) e a manutenção e prevenção de riscos ocupacionais.
 
-> **Nota:** Este README reúne a apresentação principal do software.
-
 ---
 
 ## Tecnologias
