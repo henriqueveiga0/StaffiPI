@@ -28,7 +28,7 @@ O **Staffi** nasceu com o objetivo de facilitar o trabalho do dia a dia do técn
 
 - HTML, CSS e JavaScript
 - React (front-end)
-- Node.js / NestJS (back-end)
+- NestJs (framework back-end)
 - MySQL (banco de dados)
 
 ---
