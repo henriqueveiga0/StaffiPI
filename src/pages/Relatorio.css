@@ -36,14 +36,14 @@
     align-items: center;
     width: 48px;
     height: 48px;
-    background-color: #eaf5ff;
-    color: #0086ff;
+    background-color: #e1f7e9;
+    color:  #166534;;
     border-radius: 10px;
     font-size: 22px;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 .relatorio-card:hover .relatorio-icone{
-    background-color: #0086ff;
+    background-color:  #3DC26E;
     color: #fff;
 }
 .relatorio-card h2{
