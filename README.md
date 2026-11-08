@@ -1,44 +1,124 @@
-# Staffi 
-> A segurança no trabalho é responsabilidade coletiva 
+<p align="center">
+  <img src="./src/assets/tela-home.png" alt="Tela principal do Staffi" width="900">
+</p>
 
-> Staffi — documentação do projeto.
+# Staffi
+
+> A segurança no trabalho é responsabilidade coletiva
+
+---
+
+## Informações acadêmicas
+
+| | |
+|---|---|
+| **Instituição** | Fatec Diadema Luigi Papaiz |
+| **Disciplina chave** | Engenharia de Software II |
+| **Disciplinas satélites** | Banco de Dados Relacional II, Desenvolvimento Web II |
 
 ---
 
 ## Sobre o projeto
 
-O **Staffi** Nasceu com o objetivo de fascilitar o trabalho do dia a dia do segurança do trabalho, diminuir burocracia de processos utilizando tecnologia, e permitir que o técnico em segurança do trabalho esteja nas situações onde ele é essencial, como supervisão de uso de equipamentos de proteção individual, e manutenção e prevenção de riscos ocupacionais e de trabalho.
+O **Staffi** nasceu com o objetivo de facilitar o trabalho do dia a dia do técnico em segurança do trabalho, diminuindo a burocracia dos processos com o uso de tecnologia. Assim, o profissional pode estar presente nas situações em que ele é essencial, como a supervisão do uso de Equipamentos de Proteção Individual (EPIs) e a manutenção e prevenção de riscos ocupacionais.
 
-> **Nota:** Este README reúne a apresentação principal do Software
+> **Nota:** Este README reúne a apresentação principal do software.
 
 ---
 
 ## Tecnologias
 
-Tecnologias utilizadas no projeto: 
-
 - HTML, CSS e JavaScript
-- React
-- Node.js / NestJS
-- Banco de dados
+- React (front-end)
+- Node.js / NestJS (back-end)
+- MySQL (banco de dados)
 
 ---
 
-## Onde encontrar ? 
+## Onde encontrar
 
-> Link da aplicação Web : [text](https://staffi-pi-v53s.vercel.app/home)
-
+Aplicação web: [https://staffi-pi-v53s.vercel.app/home](https://staffi-pi-v53s.vercel.app/home)
 
 ---
 
 ## Funcionalidades
 
-Descreva aqui as funcionalidades implementadas no Staffi. Exemplo:
+- [x] Login e cadastro de usuário
+- [x] Página de visualização geral (Home)
+- [x] Página de cadastro e registro de riscos
+- [x] Página de gerenciamento de EPIs
+- [x] Página de funcionários
+- [x] Página de relatórios
 
-- [ ] Página de visualização geral
-- [ ] Página de cadastro e registro de riscos
-- [ ] Página de gerenciamento de EPI
-- [ ] 
+---
+
+## Como baixar e executar o projeto
+
+### Pré-requisitos
+
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/) (versão LTS) e npm
+- [MySQL](https://www.mysql.com/) (pode ser via XAMPP) e, opcionalmente, o MySQL Workbench
+
+### 1. Clonar o repositório
+
+```bash
+git clone <URL-DO-REPOSITORIO>
+cd StaffiPI
+```
+
+### 2. Criar o banco de dados
+
+No MySQL Workbench (ou pelo terminal), crie o banco que será usado pela aplicação:
+
+```sql
+CREATE DATABASE staffi;
+```
+
+### 3. Configurar o back-end
+
+```bash
+cd back-end
+npm install
+```
+
+Crie um arquivo `.env` na raiz da pasta do back-end, com os dados do seu MySQL:
+
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=sua_senha
+DB_DATABASE=staffi
+```
+
+> Se o seu MySQL não tem senha (como no XAMPP padrão), deixe `DB_PASSWORD=` vazio.
+
+Inicie o servidor:
+
+```bash
+npm run start:dev
+```
+
+### 4. Configurar o front-end
+
+Em outro terminal, a partir da raiz do projeto:
+
+```bash
+cd front-end
+npm install
+npm run dev
+```
+
+Se o front-end precisar saber o endereço da API, informe no `.env` dele:
+
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+### 5. Acessar
+
+Abra o endereço mostrado no terminal do front-end (por exemplo, `http://localhost:5173`).
 
 ---
 
@@ -50,4 +130,4 @@ Equipe Staffi.
 
 ## Licença
 
-Todos os direitos reservados @2026 
+Todos os direitos reservados @2026
