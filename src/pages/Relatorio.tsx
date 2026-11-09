@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import "./Relatorio.css";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const API = "http://localhost:3000";
 
@@ -66,6 +68,19 @@ const relatorios: { id: TipoRelatorio; icone: string; titulo: string; descricao:
         descricao: "Visualize informações relacionadas aos funcionários",
     },
 ];
+
+// Devolve a classe da etiqueta para as colunas que têm uma (ou null para texto comum)
+function classeEtiqueta(coluna: string, valor: string | number) {
+    if (coluna !== "Criticidade" && coluna !== "Status") return null;
+
+    const sufixo = String(valor)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "") // tira os acentos: "Médio" vira "Medio"
+        .toLowerCase();
+
+    return `badge badge-${sufixo}`;
+}
+
 
 function Relatorio(){
     const [riscos, setRiscos] = useState<Risco[]>([]);
@@ -156,6 +171,59 @@ function Relatorio(){
     const relatorioAtual = montarRelatorio();
     const tituloAtual = relatorios.find((r) => r.id === aberto)?.titulo;
 
+    function baixarPdf() {
+    if (!relatorioAtual || !tituloAtual) return;
+
+    const doc = new jsPDF();
+    const largura = doc.internal.pageSize.getWidth();
+    const altura = doc.internal.pageSize.getHeight();
+
+    // Cabeçalho
+    doc.setFontSize(18);
+    doc.text("Staffi", 14, 18);
+    doc.setFontSize(14);
+    doc.text(tituloAtual, 14, 28);
+    doc.setFontSize(10);
+    doc.setTextColor(120);
+    doc.text(`Gerado em ${new Date().toLocaleString("pt-BR")}`, 14, 35);
+    doc.setTextColor(0);
+
+    // Tabela de resumo (os totais)
+    autoTable(doc, {
+        startY: 42,
+        head: [["Resumo", "Total"]],
+        body: relatorioAtual.resumo.map((item) => [item.rotulo, item.valor]),
+        theme: "grid",
+        headStyles: { fillColor: [0, 134, 255] },
+        tableWidth: 90,
+    });
+
+    // O autoTable guarda onde a tabela terminou, para começarmos a próxima abaixo
+    const fimResumo = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY;
+
+    // Tabela com todos os registros
+    autoTable(doc, {
+        startY: fimResumo + 10,
+        head: [relatorioAtual.colunas],
+        body: relatorioAtual.linhas,
+        theme: "striped",
+        headStyles: { fillColor: [0, 134, 255] },
+        styles: { fontSize: 9 },
+    });
+
+    // Numeração das páginas (só dá para saber o total depois de desenhar tudo)
+    const totalPaginas = doc.getNumberOfPages();
+    for (let i = 1; i <= totalPaginas; i++) {
+        doc.setPage(i);
+        doc.setFontSize(9);
+        doc.setTextColor(120);
+        doc.text(`Página ${i} de ${totalPaginas}`, largura - 14, altura - 8, { align: "right" });
+    }
+
+    const data = new Date().toLocaleDateString("en-CA"); // AAAA-MM-DD
+    doc.save(`relatorio-${aberto}-${data}.pdf`);
+}
+
     return(
         <Layout>
             <div className="relatorio-header">
@@ -181,17 +249,20 @@ function Relatorio(){
 
             {relatorioAtual && (
                 <section className="relatorio-detalhe">
-                    <div className="relatorio-detalhe-topo">
-                        <h2>{tituloAtual}</h2>
-                        <button
-                            type="button"
-                            className="relatorio-fechar"
-                            onClick={() => setAberto(null)}
-                        >
-                            <i className="bi bi-x-lg"></i>
-                            Fechar
-                        </button>
-                    </div>
+                   <div className="relatorio-detalhe-acoes">
+    <button type="button" className="relatorio-baixar" onClick={baixarPdf}>
+        <i className="bi bi-file-earmark-pdf"></i>
+        Baixar PDF
+    </button>
+    <button
+        type="button"
+        className="relatorio-fechar"
+        onClick={() => setAberto(null)}
+    >
+        <i className="bi bi-x-lg"></i>
+        Fechar
+    </button>
+</div>
 
                     <div className="relatorio-resumo">
                         {relatorioAtual.resumo.map((item) => (
@@ -221,9 +292,14 @@ function Relatorio(){
                                 )}
                                 {relatorioAtual.linhas.map((linha, i) => (
                                     <tr key={i}>
-                                        {linha.map((celula, j) => (
-                                            <td key={j}>{celula}</td>
-                                        ))}
+                                       {linha.map((celula, j) => {
+    const classe = classeEtiqueta(relatorioAtual.colunas[j], celula);
+    return (
+        <td key={j}>
+            {classe ? <span className={classe}>{celula}</span> : celula}
+        </td>
+    );
+})}
                                     </tr>
                                 ))}
                             </tbody>

@@ -156,3 +156,23 @@
 .relatorio-tabela tbody tr:hover{
     background-color: #f8fafc;
 }
+
+.relatorio-detalhe-acoes{
+    display: flex;
+    gap: 10px;
+}
+.relatorio-baixar{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #0086ff;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+.relatorio-baixar:hover{
+    filter: brightness(0.92);
+}

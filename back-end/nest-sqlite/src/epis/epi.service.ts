@@ -20,4 +20,9 @@ export class EpiService {
     return this.epiRepository.save(epi);
   }
 
+  async createMany(lista: CriarEpiDto[]): Promise<Epi[]>{
+    const epis = this.epiRepository.create(lista);
+    return this.epiRepository.save(epis)
+  }
+
 }
