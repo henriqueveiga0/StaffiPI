@@ -16,8 +16,8 @@
 | **Professor** | Luiz Antonio de Lima |
 | **Disciplinas satélites** | Banco de Dados Relacional II, Desenvolvimento Web II |
 
-| | |
-|---|---|
+| | 
+|---|
 | **Equipe Staffi** |
 | Adrian David Landaeta Chirinos |
 | Guilherme Ferreira Castro |
