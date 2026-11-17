@@ -9,11 +9,22 @@
 ---
 
 ## Informações acadêmicas
-
 | | |
 |---|---|
 | **Instituição** | Fatec Diadema Luigi Papaiz |
 | **Disciplina chave** | Engenharia de Software II |
+| **Professor** | Luiz Antonio de Lima |
+| **Disciplinas satélites** | Banco de Dados Relacional II, Desenvolvimento Web II |
+
+| | |
+|---|---|
+| **Equipe Staffi** |
+| Adrian David Landaeta Chirinos |
+| Guilherme Ferreira Castro |
+| Henrique Veiga Messias |
+| João Vitor Gusmão |
+| Matheus Encarnacion do Carmo |
+| Thiago Menegon Bispo |
 | **Disciplinas satélites** | Banco de Dados Relacional II, Desenvolvimento Web II |
 
 ---
