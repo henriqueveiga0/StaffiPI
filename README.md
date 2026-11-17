@@ -25,7 +25,6 @@
 | João Vitor Gusmão |
 | Matheus Encarnacion do Carmo |
 | Thiago Menegon Bispo |
-| **Disciplinas satélites** | Banco de Dados Relacional II, Desenvolvimento Web II |
 
 ---
 
